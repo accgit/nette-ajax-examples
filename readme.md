@@ -10,3 +10,6 @@ Simple examples of using ajax in Nette Framework
 ![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/typeahead.png)
 
 link: localhost/project/web/typeahead
+
+
+...More will be added
