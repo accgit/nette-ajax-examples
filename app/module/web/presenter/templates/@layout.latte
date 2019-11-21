@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
+
+	<style>
+		span.error {
+			display: block;
+			color: red;
+			font-weight: 500;
+			margin-top: 5px;
+		}
+	</style>
+
+	<title>{include subtitle|stripHtml|firstUpper} &bull; Examples</title>
+</head>
+
+<body>
+<div class="container mt-5" style="width: 500px">
+
+    {* content block *}
+    {include content|indent:1}
+</div>
+
+	<script src="{$basePath}/node_modules/jquery/dist/jquery.js"></script>
+	<script src="{$basePath}/node_modules/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+	<script src="{$basePath}/vendor/nette/forms/src/assets/netteForms.js"></script>
+	<script src="{$basePath}/node_modules/live-form-validation/live-form-validation.js"></script>
+	<script src="{$basePath}/node_modules/nette.ajax.js/nette.ajax.js"></script>
+
+	<script>
+		$(function () {
+
+			// live form validation.
+			LiveForm.setOptions({
+				messageErrorClass: 'error',
+				messageErrorPrefix: '',
+				wait: 500
+			});
+
+			// Bootstrap typeahead.
+			$(document).ready(function () {
+				$.nette.ajax({
+					url: {link json!},
+					success: function (data) {
+						$('#frm-form-input').typeahead({
+							source: data
+						});
+					}
+				});
+			});
+
+			$.nette.ext('nette.typeahead.init', {
+				success: function(payload) {
+					$('#frm-form-input').typeahead({
+						source: payload.data
+					});
+				}
+			});
+
+			// Nette ajax.
+			$.nette.init();
+		});
+	</script>
+
+</body>
+</html>
