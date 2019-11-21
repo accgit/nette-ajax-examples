@@ -29,7 +29,7 @@ final class WebPresenter extends Presenter
 	}
 
 
-	public function renderDefault()
+	public function renderTypeahead()
 	{
 		// If he does not want to use this command, we must wrap the snippet with the entire form.
 		$this->template->getLatte()->addProvider('formsStack', [$this['form']]);
