@@ -10,6 +10,8 @@ use Nette\Application\UI\Presenter;
 
 final class WebPresenter extends Presenter
 {
+	/* typeahead ---------------------------------------------------------------------------------------------------- */
+
 	private function data(): array
 	{
 		return [
@@ -45,7 +47,7 @@ final class WebPresenter extends Presenter
 			->setRequired();
 
 		$form->addSubmit('send', 'Send');
-		$form->onSubmit[] = [$this, 'process'];
+		$form->onSuccess[] = [$this, 'process'];
 		return $form;
 	}
 
@@ -53,7 +55,9 @@ final class WebPresenter extends Presenter
 	public function process(Form $form): void
 	{
 		$form->reset();
-		$this->payload->data = $this->data();
-		$this->redrawControl('typeahead');
+		if ($this->isAjax()) {
+			$this->payload->data = $this->data();
+			$this->redrawControl('typeahead');
+		}
 	}
 }

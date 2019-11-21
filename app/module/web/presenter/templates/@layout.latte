@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="{$basePath}/node_modules/bootstrap/dist/css/bootstrap.css">
+	{block css}{/block}
 
 	<style>
 		span.error {
@@ -30,7 +31,8 @@
 	<script src="{$basePath}/vendor/nette/forms/src/assets/netteForms.js"></script>
 	<script src="{$basePath}/node_modules/live-form-validation/live-form-validation.js"></script>
 	<script src="{$basePath}/node_modules/nette.ajax.js/nette.ajax.js"></script>
-
+	<script src="{$basePath}/assets/js/nette.spinner.js"></script>
+	{block js}{/block}
 	<script>
 		$(function () {
 
@@ -41,27 +43,7 @@
 				wait: 500
 			});
 
-			// Bootstrap typeahead.
-			$(document).ready(function () {
-				$.nette.ajax({
-					url: {link json!},
-					success: function (data) {
-						$('#frm-form-input').typeahead({
-							source: data
-						});
-					}
-				});
-			});
-
-			$.nette.ext('nette.typeahead.init', {
-				success: function(payload) {
-					$('#frm-form-input').typeahead({
-						source: payload.data
-					});
-				}
-			});
-
-			// Nette ajax.
+			// Nette Ajax.
 			$.nette.init();
 		});
 	</script>
