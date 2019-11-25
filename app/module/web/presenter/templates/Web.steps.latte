@@ -1,0 +1,63 @@
+
+{* subtitle page *}
+{block subtitle}Form steps{/block}
+
+{* added css *}
+{block css}
+	<style>
+		a.step {
+			background-color: #e1e1e1;
+			display: block;
+			width: 15px;
+			height: 15px;
+		}
+		a.step.current {
+			background-color: #529ade;
+		}
+	</style>
+{/block}
+
+{* website content *}
+{block content}
+
+	{* title*}
+	<p class="display-4 mb-4" style="font-size: 2em;">Example Nette AJAX Form steps</p>
+
+	{snippet step}
+		{if $step === 1}
+			{control step01}
+		{elseif $step === 2}
+			{control step02}
+		{/if}
+	{/snippet}
+
+	{* steps info *}
+	<div class="text-center">
+		<div class="clearfix mx-auto" style="width: 68px;">
+			{snippet info}
+				<a data-id="1" href="#" n:class="'float-left rounded-circle step mr-1', $step === 1 ? 'current'"></a>
+				<a data-id="2" href="#" n:class="'float-left rounded-circle step', $step === 2 ? 'current'"></a>
+			{/snippet}
+		</div>
+	</div>
+
+{/block}
+
+{* back to previous step *}
+{block js}
+	<script>
+		$(function () {
+			$.nette.ext('nette.steps', {
+				load: function() {
+					$('.step').off('click').on('click', function() {
+						var step = $(this).attr('data-id');
+						$.nette.ajax({
+							url: {link steps!},
+							data: {'step': step}
+						});
+					});
+				}
+			});
+		});
+	</script>
+{/block}

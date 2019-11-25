@@ -28,25 +28,25 @@
 
 {* typeahead on bootstrap 4 *}
 {block js}
-<script>
-	$(function () {
-		$(document).ready(function () {
-			$.nette.ajax({
-				url: {link json!},
-				success: function (data) {
+	<script>
+		$(function () {
+			$(document).ready(function () {
+				$.nette.ajax({
+					url: {link json!},
+					success: function (data) {
+						$('#frm-form-input').typeahead({
+							source: data
+						});
+					}
+				});
+			});
+			$.nette.ext('nette.typeahead', {
+				success: function(payload) {
 					$('#frm-form-input').typeahead({
-						source: data
+						source: payload.data
 					});
 				}
 			});
 		});
-		$.nette.ext('nette.typeahead', {
-			success: function(payload) {
-				$('#frm-form-input').typeahead({
-					source: payload.data
-				});
-			}
-		});
-	});
-</script>
+	</script>
 {/block}

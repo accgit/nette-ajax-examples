@@ -19,3 +19,13 @@ application:
 # enabling system container for Tracy bar
 di:
 	debugger: yes
+
+
+services:
+
+	# using sessions outside the presenter
+	- Drago\Http\Sessions(@Nette\Http\Session, 'ajax')
+
+	# components
+	- Module\Web\Components\Step01
+	- Module\Web\Components\Step02
