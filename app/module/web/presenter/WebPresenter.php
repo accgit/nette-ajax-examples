@@ -108,6 +108,7 @@ final class WebPresenter extends Presenter
 
 			$session->step = $step;
 			$form = $this['step01']['step01'];
+			$form['send']->caption = 'Update and continue';
 			$form['realname']->setValue($session->realname);
 
 			if ($this->isAjax()) {
