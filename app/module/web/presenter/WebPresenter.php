@@ -100,7 +100,7 @@ final class WebPresenter extends Presenter
 	/**
 	 * @param string $step
 	 */
-	public function handleSteps($step)
+	public function handleSteps($step): void
 	{
 		$step = (int) $step;
 		$session = $this->session->getSection('ajax');
