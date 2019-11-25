@@ -33,7 +33,6 @@ class Step01 extends Control
 	{
 		$form = new Form;
 		$form->addText('realname', 'Realmane')
-			->setHtmlAttribute('type', 'email')
 			->setRequired();
 
 		$form->addSubmit('send', 'Next');
