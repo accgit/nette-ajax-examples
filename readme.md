@@ -6,7 +6,7 @@ Simple examples of using ajax in Nette Framework
 - composer
 - npm
 
-## Typeahead on bootstrap 4
+## Typeahead on Bootstrap 4
 ![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/typeahead.png)
 
 ## Simple forms steps
@@ -14,8 +14,8 @@ Values saving to sessions.
 
 ![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/steps.png)
 
-
-
+## Modal on Bootstrap 4
+Simple demonstration of modal.
 
 
 ...More will be added
