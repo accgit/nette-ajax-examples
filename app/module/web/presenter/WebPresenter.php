@@ -124,4 +124,42 @@ final class WebPresenter extends Presenter
 		$session = $this->session->getSection('steps');
 		$this->template->step = $session->step ?? $this->step;
 	}
+
+
+	/* modal -------------------------------------------------------------------------------------------------------- */
+
+	protected function createComponentModalForm(): Form
+	{
+		$form = new Form;
+		$form->addText('name', 'Name')
+			->setRequired();
+
+		$form->addTextArea('message', 'Message')
+			->setRequired();
+
+		$form->addSubmit('send', 'Send');
+		$form->onSuccess[] = [$this, 'modalProcess'];
+		return $form;
+	}
+
+
+	public function modalProcess(Form $form): void
+	{
+		$values = $form->values;
+		Debugger::barDump($values);
+
+		if ($this->isAjax()) {
+			$this->payload->modal = 'close';
+			$this->redrawControl('modal');
+		}
+	}
+
+
+	public function handleModal(): void
+	{
+		if ($this->isAjax()) {
+			$this->payload->modal = 'run';
+			$this->redrawControl('modal');
+		}
+	}
 }

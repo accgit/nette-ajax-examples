@@ -1,0 +1,92 @@
+
+{* subtitle page *}
+{block subtitle}Modal{/block}
+
+{* website content *}
+{block content}
+
+	{* title*}
+	<p class="display-4 mb-4" style="font-size: 2em;">Example Nette AJAX Modal</p>
+
+	{* hyperlink for open modal *}
+	<a href="#" class="my-modal btn btn-info">Send message</a>
+
+	{* moal *}
+	{snippet modal}
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				{* modal header *}
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+				</div>
+
+				{* modal body *}
+				<form n:name="modalForm" class="ajax">
+					<div class="modal-body">
+							<div class="form-group">
+								<label n:name="name" class="col-form-label" />
+								<input n:name="name" class="form-control">
+							</div>
+							<div class="form-group">
+								<label n:name="message" class="col-form-label" />
+								<textarea n:name="message" class="form-control"></textarea>
+							</div>
+					</div>
+
+					{* modal footer *}
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<input n:name="send" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	{/snippet}
+{/block}
+
+{* modal on bootstrap 4 *}
+{block js}
+	<script>
+		$(function () {
+			$.nette.ext('nette.modal.click', {
+				load: function() {
+					$('.my-modal').off('click').on('click', function() {
+						$.nette.ajax({
+							url: {link modal!}
+						});
+					});
+				}
+			});
+			$.nette.ext('nette.modal', {
+				success: function (payload) {
+
+					// Run the modal window with the command.
+					if (payload.modal === 'run') {
+
+						// Disable closing the modal after clicking outside it.
+						$('#exampleModal').modal({
+							backdrop: 'static',
+							keyboard: false
+						});
+
+						// Exits the modal with the command.
+					} else if (payload.modal === 'close'){
+						$('#exampleModal').modal('hide');
+
+						// Deletion of inserted classes after calling a modal.
+						$('body').removeClass('modal-open');
+						$('.modal-backdrop').remove();
+					}
+				}
+			});
+		});
+	</script>
+{/block}
