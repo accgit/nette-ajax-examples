@@ -103,7 +103,7 @@ final class WebPresenter extends Presenter
 	public function handleSteps($step)
 	{
 		$step = (int) $step;
-		$session = $this->session->getSection('ajax');
+		$session = $this->session->getSection('steps');
 		if ($step === 1 && $session->realname) {
 
 			$session->step = $step;
@@ -121,7 +121,7 @@ final class WebPresenter extends Presenter
 
 	public function renderSteps(): void
 	{
-		$session = $this->session->getSection('ajax');
+		$session = $this->session->getSection('steps');
 		$this->template->step = $session->step ?? $this->step;
 	}
 }

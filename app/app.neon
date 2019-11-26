@@ -24,7 +24,7 @@ di:
 services:
 
 	# using sessions outside the presenter
-	- Drago\Http\Sessions(@Nette\Http\Session, 'ajax')
+	- Drago\Http\Sessions(@Nette\Http\Session, 'steps')
 
 	# components
 	- Module\Web\Components\Step01
