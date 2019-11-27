@@ -1,0 +1,24 @@
+<script>
+	$(function () {
+		$.nette.ext('nette.from-control', {
+			load: function() {
+				$('#from-control').off('click').on('click', function() {
+					$.nette.ajax({
+						url: {link messageFromControl!},
+					});
+				});
+			}
+		});
+	});
+	$(function () {
+		$.nette.ext('nette.in-control', {
+			load: function() {
+				$('#in-control').off('click').on('click', function() {
+					$.nette.ajax({
+						url: {link messageInControl!},
+					});
+				});
+			}
+		});
+	});
+</script>

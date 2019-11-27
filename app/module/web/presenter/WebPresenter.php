@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Module\Web;
 
+use Module\Web\Components\Message;
 use Module\Web\Components\Step01;
 use Module\Web\Components\Step02;
 use Nette\Application\UI\Form;
@@ -27,6 +28,12 @@ final class WebPresenter extends Presenter
 	 * @inject
 	 */
 	public $step02;
+
+	/**
+	 * @var Message
+	 * @inject
+	 */
+	public $message;
 
 
 	/* typeahead ---------------------------------------------------------------------------------------------------- */
@@ -161,5 +168,23 @@ final class WebPresenter extends Presenter
 			$this->payload->modal = 'run';
 			$this->redrawControl('modal');
 		}
+	}
+
+	/* flash messages ----------------------------------------------------------------------------------------------- */
+
+	public function handleMessageFromPresenter(): void
+	{
+		$message = 'Hello, World!';
+		$this->presenter->flashMessage($message);
+
+		if ($this->isAjax()) {
+			$this->redrawControl('message');
+		}
+	}
+
+
+	protected function createComponentMessage(): Message
+	{
+		return $this->message;
 	}
 }

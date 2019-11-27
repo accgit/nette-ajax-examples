@@ -29,3 +29,4 @@ services:
 	# components
 	- Module\Web\Components\Step01
 	- Module\Web\Components\Step02
+	- Module\Web\Components\Message

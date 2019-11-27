@@ -17,5 +17,7 @@ Values saving to sessions.
 ## Modal on Bootstrap 4
 Simple demonstration of modal.
 
+## Flash messages from presenter and control
+Display flash message in presenter or component, using js or macro.
 
-...More will be added
+![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/messages.png)

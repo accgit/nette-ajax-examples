@@ -24,7 +24,7 @@ class Step01 extends Control
 	public function render(): void
 	{
 		$template = $this->template;
-		$template->setFile(__DIR__ . '/../templates/Control.step01.latte');
+		$template->setFile(__DIR__ . '/../templates/Control/step01.latte');
 		$template->render();
 	}
 

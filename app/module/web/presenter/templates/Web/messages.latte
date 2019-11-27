@@ -1,0 +1,43 @@
+
+{* subtitle page *}
+{block subtitle}Flash messages{/block}
+
+{* website content *}
+{block content}
+
+	{* title*}
+	<p class="display-4 mb-4" style="font-size: 2em;">Example Nette AJAX Flash messages</p>
+
+	{* messages from presenter *}
+	{snippet message}
+		{include '../@message.latte'}
+	{/snippet}
+
+	{* message from component *}
+    {control message}
+
+	{* buttons *}
+	<a href="#" id="presenter" class="btn btn-primary">Presenter</a>
+    {control message:buttons}
+
+{/block}
+
+{* typeahead on bootstrap 4 *}
+{block js}
+	<script>
+		$(function () {
+			$.nette.ext('nette.presenter.message', {
+				load: function() {
+					$('#presenter').off('click').on('click', function() {
+						$.nette.ajax({
+							url: {link messageFromPresenter!},
+						});
+					});
+				}
+			});
+		});
+	</script>
+
+	{* js from component *}
+    {control message:js}
+{/block}
