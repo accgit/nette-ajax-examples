@@ -7,6 +7,7 @@ namespace Module\Web;
 use Module\Web\Components\Message;
 use Module\Web\Components\Step01;
 use Module\Web\Components\Step02;
+use Module\Web\Components\Toast;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Tracy\Debugger;
@@ -16,6 +17,12 @@ final class WebPresenter extends Presenter
 {
 	/** @var int */
 	private $step = 1;
+
+	/** @var string */
+	private $toastTitle;
+
+	/** @var string */
+	private $toastBody;
 
 	/**
 	 * @var Step01
@@ -34,6 +41,12 @@ final class WebPresenter extends Presenter
 	 * @inject
 	 */
 	public $message;
+
+	/**
+	 * @var Toast
+	 * @inject
+	 */
+	public $toast;
 
 
 	/* typeahead ---------------------------------------------------------------------------------------------------- */
@@ -186,5 +199,33 @@ final class WebPresenter extends Presenter
 	protected function createComponentMessage(): Message
 	{
 		return $this->message;
+	}
+
+
+	/* toast -------------------------------------------------------------------------------------------------------- */
+
+	protected function createComponentToast(): Toast
+	{
+		$toast = $this->toast;
+		return $toast;
+	}
+
+
+	public function renderToast(): void
+	{
+		$this->template->toastTitle = $this->toastTitle;
+		$this->template->toastBody = $this->toastBody;
+	}
+
+
+	public function handleToast(): void
+	{
+		$this->toastTitle = 'Bootstrap';
+		$this->toastBody = 'Heads up, toasts will stack automatically.';
+
+		if ($this->isAjax()) {
+			$this->payload->toast = 'run';
+			$this->redrawControl('toast');
+		}
 	}
 }

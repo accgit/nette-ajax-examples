@@ -21,3 +21,8 @@ Simple demonstration of modal.
 Display flash message in presenter or component, using js or macro.
 
 ![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/messages.png)
+
+
+## Simple Bootstrap 4 toast
+
+![alt text](https://raw.githubusercontent.com/accgit/nette-ajax-examples/master/assets/img/toast.png)

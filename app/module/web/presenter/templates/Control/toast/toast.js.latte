@@ -1,0 +1,11 @@
+<script>
+	$(function () {
+		$.nette.ext('nette.toast', {
+			success: function (payload) {
+				if (payload.toast === 'run') {
+					$('.toast').toast('show')
+				}
+			}
+		});
+	});
+</script>

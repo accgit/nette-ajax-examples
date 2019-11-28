@@ -1,0 +1,26 @@
+
+{* subtitle page *}
+{block subtitle}Toasts{/block}
+
+{* website content *}
+{block content}
+
+	{* title*}
+	<p class="display-4 mb-4" style="font-size: 2em;">Example Nette AJAX Toasts</p>
+
+	{* toast *}
+	{snippet toast}
+		{control toast, $toastTitle, $toastBody}
+	{/snippet}
+
+	{* Show toast *}
+	<a href="{link toast!}" class="btn btn-dark ajax">Show toast</a>
+
+{/block}
+
+{* toasts on bootstrap 4 *}
+{block js}
+
+	{* js toast *}
+    {control toast:js}
+{/block}
