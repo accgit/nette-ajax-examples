@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Module\Web\Components;
 
-use Drago\Http\Sessions;
+use Drago\Http\ExtraSession;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Tracy\Debugger;
@@ -12,11 +12,11 @@ use Tracy\Debugger;
 
 class Step02 extends Control
 {
-	/** @var Sessions */
+	/** @var ExtraSession */
 	private $sessions;
 
 
-	public function __construct(Sessions $sessions)
+	public function __construct(ExtraSession $sessions)
 	{
 		$this->sessions = $sessions;
 	}
